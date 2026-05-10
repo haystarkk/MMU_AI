@@ -1,0 +1,157 @@
+=============================================================================
+CAT 1
+Theory Answers
+
+QUESTION 1(a): Differences between Informed and Uninformed Search
+---------------------------------------------------------------------
+
+UNINFORMED SEARCH (Blind Search):
+- No additional knowledge about the problem beyond its definition
+- Only knows: initial state, goal test, available actions, transition model
+- Examples: Breadth-First Search (BFS), Depth-First Search (DFS), Uniform Cost Search (UCS)
+- Characteristics:
+  * Explores states blindly without guidance
+  * Can be very inefficient for large search spaces
+  * BFS guarantees optimal solution for unweighted graphs
+  * UCS guarantees optimal solution for weighted graphs with non-negative costs
+
+INFORMED SEARCH (Heuristic Search):
+- Uses domain-specific knowledge (heuristic function)
+- Heuristic estimates cost from current state to goal
+- Examples: Greedy Best-First Search, A* Search
+- Characteristics:
+  * More efficient by focusing on promising states
+  * Requires good heuristic to be effective
+  * A* is optimal if heuristic is admissible (never overestimates)
+
+DIFFERENCES 
++------------------+------------------------+------------------------+
+| Aspect           | Uninformed Search      | Informed Search        |
++------------------+------------------------+------------------------+
+| Knowledge needed | Problem only           | Problem + heuristic    |
+| Efficiency       | Low (exponential)      | High (if good heuristic)|
+| Optimality       | BFS/UCS only           | A* (with admissible h) |
+| Best for         | Small problems         | Large, real-world      |
++------------------+------------------------+------------------------+
+
+=============================================================================
+
+QUESTION 1(c)(i): Distinguish Valid, Satisfiable, Unsatisfiable, Falsible
+---------------------------------------------------------------------
+
++------------------+--------------------------------+-------------------+
+| Term             | Definition                     | Example           |
++------------------+--------------------------------+-------------------+
+| Valid (Tautology)| True for ALL truth assignments | P ∨ ¬P            |
+| Satisfiable      | True for AT LEAST ONE          | P ∧ Q             |
+| Unsatisfiable    | False for ALL truth assignments| P ∧ ¬P            |
+| Falsible         | False for AT LEAST ONE         | P ∧ Q             |
++------------------+--------------------------------+-------------------+
+
+RELATIONSHIPS:
+- Every valid formula is satisfiable (but not vice versa)
+- Unsatisfiable means no model exists
+- Falsible means the formula is NOT a tautology
+- A formula can be both satisfiable and falsible
+
+=============================================================================
+
+QUESTION 1(c)(ii): Truth Table for P ∧ Q → R
+---------------------------------------------------------------------
+
++---+---+---+-------+-------------+
+| P | Q | R | P ∧ Q | (P ∧ Q) → R |
++---+---+---+-------+-------------+
+| F | F | F |   F   |      T      |
+| F | F | T |   F   |      T      |
+| F | T | F |   F   |      T      |
+| F | T | T |   F   |      T      |
+| T | F | F |   F   |      T      |
+| T | F | T |   F   |      T      |
+| T | T | F |   T   |      F      |
+| T | T | T |   T   |      T      |
++---+---+---+-------+-------------+
+
+ANALYSIS:
+- Valid?        NO (row 7 is False)
+- Satisfiable?  YES (rows 1-6,8 are True)
+- Unsatisfiable? NO (True in 7 out of 8 rows)
+- Falsible?     YES (row 7 is False)
+
+CONDITIONS FOR TRUE (satisfied):
+- P is False (any Q,R)
+- Q is False (any P,R)
+- P = True, Q = True, R = True
+
+CONDITIONS FOR FALSE (falsified):
+- P = True, Q = True, R = False (only this case)
+
+LOGICAL EQUIVALENCE:
+P ∧ Q → R ≡ ¬(P ∧ Q) ∨ R ≡ (¬P ∨ ¬Q ∨ R)
+
+=============================================================================
+
+QUESTION 2(a): PEAS and PAGE for DNA/Genomic Sequencing System
+---------------------------------------------------------------------
+
+PEAS ANALYSIS:
++--------------+-----------------------------------------------------------+
+| Element      | Description                                               |
++--------------+-----------------------------------------------------------+
+| PERFORMANCE  | - Accuracy of identification (minimize false results)    |
+|              | - Processing speed (time from sample to identification)  |
+|              | - Number of victims successfully identified              |
+|              | - Quality of DNA sequencing                               |
+|              | - Privacy preservation of genetic data                   |
+|              | - Ability to handle degraded DNA from corpses            |
++--------------+-----------------------------------------------------------+
+| ENVIRONMENT  | - Laboratory with DNA sequencers                         |
+|              | - Database of genetic profiles from relatives            |
+|              | - DNA samples from corpses (tissue, bone, blood)         |
+|              | - Reference samples from relatives                       |
+|              | - Partially observable (internal DNA structure hidden)   |
+|              | - Stochastic (sequencing errors possible)                |
+|              | - Dynamic (new samples arrive continuously)              |
++--------------+-----------------------------------------------------------+
+| ACTUATORS    | - DNA sequencer (start/stop sequencing)                  |
+|              | - Liquid handling robot (sample preparation)             |
+|              | - Database writer (store genetic profiles)               |
+|              | - Report generator (output identification results)       |
+|              | - Alert system (notify when match found)                 |
++--------------+-----------------------------------------------------------+
+| SENSORS      | - DNA sequencer (raw genetic data)                       |
+|              | - Barcode reader (sample tracking)                       |
+|              | - Quality control sensors (sequencing quality)           |
+|              | - Data input interface (relatives' information)          |
+|              | - Camera (sample documentation)                          |
++--------------+-----------------------------------------------------------+
+
+PAGE ANALYSIS:
++--------------+-----------------------------------------------------------+
+| Element      | Description                                               |
++--------------+-----------------------------------------------------------+
+| PERCEPTS     | - Raw DNA sequences                                       |
+|              | - Sample IDs and tracking information                    |
+|              | - Relative relationship data                             |
+|              | - Quality scores of sequencing runs                      |
+|              | - Database match confidence levels                       |
++--------------+-----------------------------------------------------------+
+| ACTIONS      | - Start sequencing process                               |
+|              | - Compare genetic markers with database                  |
+|              | - Store processed genetic profiles                       |
+|              | - Output identification reports                          |
+|              | - Flag partial matches for review                        |
++--------------+-----------------------------------------------------------+
+| GOALS        | - Identify each victim uniquely and reliably             |
+|              | - Minimize turnaround time per sample                    |
+|              | - Handle degraded or contaminated DNA                    |
+|              | - Maintain chain of custody                              |
+|              | - Ensure data privacy and security                       |
++--------------+-----------------------------------------------------------+
+| ENVIRONMENT  | - Partially observable (DNA hidden until sequenced)      |
+|              | - Stochastic (random sequencing errors possible)         |
+|              | - Dynamic (new samples arrive over time)                 |
+|              | - Continuous (real-time processing required)             |
+|              | - Multi-agent (multiple samples processing simultaneously)|
++--------------+-----------------------------------------------------------+
+
